@@ -29,11 +29,18 @@ namespace TQEnjineZ
 
 
             BitmapImage img = new BitmapImage(new Uri(@"D:\test.png", UriKind.Relative));
-         //   img.CreateOptions = BitmapCreateOptions.None;
+            BitmapImage img1 = new BitmapImage(new Uri(@"D:\test1.png", UriKind.Relative));
+            BitmapImage img2 = new BitmapImage(new Uri(@"D:\test2.png", UriKind.Relative));
+            //   img.CreateOptions = BitmapCreateOptions.None;
 
 
             TQEnjineZ.Clases.Wrappers.zBitmap.zBitmap pic = new Clases.Wrappers.zBitmap.zBitmap(img);
 
+            pic.addLayer("ulitka", img1, 1, true, 100);
+            pic.addLayer("zayats", img2, 2, true, 100);
+
+
+            pictOut.Source = pic.GetFinalImage;
         }
     }
 }

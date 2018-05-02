@@ -45,5 +45,39 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
                 Alpha = newAlpha
             };
         }
+
+
+        /// <summary>
+        /// Миксуем 2 цвета
+        /// </summary>
+        /// <param name="backgroundChannel">Значения канала заднего плана</param>
+        /// <param name="foregroundChannel">Значение канала фона</param>
+        /// <param name="foregroundAlphaChannel">Значение альфа-канала фона</param>
+        /// <returns>Новаое значение цвета</returns>
+        private double mixChannel(double backgroundChannel, double foregroundChannel, double foregroundAlphaChannel)
+        {
+            //Приводим 
+            double alpha = foregroundAlphaChannel / 100.00;
+            return foregroundChannel + backgroundChannel * (1.0 - alpha);
+        }
+
+        /// <summary>
+        /// Смешиваем цвета, с учётом слоёв
+        /// </summary>
+        /// <param name="foreground">Цвет фона</param>
+        /// <returns>Цвет нового пикселя</returns>
+        public zBitmapPixel mixPixelColors(zBitmapPixel foreground)
+        {
+            //Возвращаем миксовый цвет
+            return new zBitmapPixel()
+            {
+                Red = (byte)mixChannel(Red, foreground.Red, foreground.Alpha),
+                Blue = (byte)mixChannel(Blue, foreground.Blue, foreground.Alpha),
+                Green = (byte)mixChannel(Green, foreground.Green, foreground.Alpha),
+                Alpha = (byte)mixChannel(Alpha, foreground.Alpha, foreground.Alpha)
+            };
+        }
+
+
     }
 }
