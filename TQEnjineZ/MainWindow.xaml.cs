@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,11 +37,28 @@ namespace TQEnjineZ
 
             TQEnjineZ.Clases.Wrappers.zBitmap.zBitmap pic = new Clases.Wrappers.zBitmap.zBitmap(img);
 
-            pic.addLayer("ulitka", img1, 1, true, 100);
-            pic.addLayer("zayats", img2, 2, true, 100);
+            pic.editLayer("Background", null, null, null, 70);
+
+            
+            pic.addLayer("ulitka", img1, 1, true, 50);
+            pic.addLayer("zayats", img2, 2, true, 40);
 
 
+            CreateThumbnail(@"D:\testImage.png", pic.GetFinalImage.Clone());
             pictOut.Source = pic.GetFinalImage;
+        }
+
+        void CreateThumbnail(string filename, BitmapSource image5)
+        {
+            if (filename != string.Empty)
+            {
+                using (FileStream stream5 = new FileStream(filename, FileMode.Create))
+                {
+                    PngBitmapEncoder encoder5 = new PngBitmapEncoder();
+                    encoder5.Frames.Add(BitmapFrame.Create(image5));
+                    encoder5.Save(stream5);
+                }
+            }
         }
     }
 }
