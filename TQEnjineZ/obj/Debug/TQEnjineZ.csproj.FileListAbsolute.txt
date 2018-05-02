@@ -1,0 +1,15 @@
+H:\TQEnjineZ\TQEnjineZ\bin\Debug\TQEnjineZ.exe.config
+H:\TQEnjineZ\TQEnjineZ\bin\Debug\TQEnjineZ.exe
+H:\TQEnjineZ\TQEnjineZ\bin\Debug\TQEnjineZ.pdb
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.csprojResolveAssemblyReference.cache
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\MainWindow.g.cs
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\App.g.cs
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ_MarkupCompile.cache
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ_MarkupCompile.lref
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\MainWindow.baml
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.g.resources
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.Properties.Resources.resources
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.csproj.GenerateResource.cache
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.csproj.CoreCompileInputs.cache
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.exe
+H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.pdb
