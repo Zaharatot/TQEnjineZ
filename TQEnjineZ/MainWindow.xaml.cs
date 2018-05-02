@@ -26,6 +26,14 @@ namespace TQEnjineZ
 
             for (int i = 0; i < 10; i++)
                 scenesTree.Items.Add("Scene_" + i.ToString());
+
+
+            BitmapImage img = new BitmapImage(new Uri(@"D:\test.png", UriKind.Relative));
+         //   img.CreateOptions = BitmapCreateOptions.None;
+
+
+            TQEnjineZ.Clases.Wrappers.zBitmap.zBitmap pic = new Clases.Wrappers.zBitmap.zBitmap(img);
+
         }
     }
 }
