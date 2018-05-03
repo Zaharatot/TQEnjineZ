@@ -131,7 +131,7 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         {
             //Создаём картинку, для вывода на неё пикселов
             WriteableBitmap ex = new WriteableBitmap(width, height, 140, 140, PixelFormats.Bgra32, null);
-       /*     try
+         /*   try
             {*/
                 int i = 0;
                 //Формируем список из всех слоёв
@@ -149,15 +149,14 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
                     return a.ZIndex.CompareTo(b.ZIndex);
                 });
 
-
                 //Формируем из кучи слоёв один
                 var imagePixels = mixLayersPixels(layersList);
                 //Множим ширину, на количество байт в цвете
                 int stride = width * 4;
 
                 //Формируем картинку
-                ex.WritePixels(new Int32Rect(0, 0, width, height), imagePixels, stride, 0);
-          /*  }
+                ex.WritePixels(new Int32Rect(0, 0, width, height), imagePixels, stride, 0);                
+         /*   }
             catch { }
             */
             //Возвращаем картинку

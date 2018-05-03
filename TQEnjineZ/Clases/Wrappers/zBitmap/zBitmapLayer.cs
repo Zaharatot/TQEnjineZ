@@ -169,6 +169,7 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
              в скорости не даёт, так что останется так, т.к. мне так удобнее.             
              */
 
+            double av, av1, av2;
             byte av3, colR, colG, colB;
             int r, g, b, a;
             //Записываем пиксели фона
@@ -197,17 +198,20 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
                 else
                 {
                     //Считаем значение суммарного альфа-канала
-                    av3 = (byte)(foreground[a] + backgeround[a] * (255 - foreground[a]));
+                    av1 = backgeround[a] / 255.0;
+                    av2 = foreground[a] / 255.0;
+                    av = av1 + av2 - av1 * av2;
                     //Если результирующий альфа-канал равен нулю, то все цвета ставим белым, т.к. всё равно получится прозрачный
-                    if (av3 == 0)
+                    if (av == 0)
                         colR = colG = colB = 255;
                     else
                     {
                         //Считаем значения цветов
-                        colG = (byte)((foreground[g] * foreground[a] + backgeround[g] * backgeround[a] * (255 - foreground[a])) / av3);
-                        colB = (byte)((foreground[b] * foreground[a] + backgeround[b] * backgeround[a] * (255 - foreground[a])) / av3);
-                        colR = (byte)((foreground[r] * foreground[a] + backgeround[r] * backgeround[a] * (255 - foreground[a])) / av3);
+                        colG = (byte)((foreground[g] * av2 + backgeround[g] * av1 * (1 - av2)) / av);
+                        colB = (byte)((foreground[b] * av2 + backgeround[b] * av1 * (1 - av2)) / av);
+                        colR = (byte)((foreground[r] * av2 + backgeround[r] * av1 * (1 - av2)) / av);
                     }
+                    av3 = (byte)(av * 255);
                 }
 
                 //Возвращаем миксовый цвет

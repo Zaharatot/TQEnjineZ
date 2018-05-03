@@ -36,6 +36,7 @@ namespace TQEnjineZ
             //   img.CreateOptions = BitmapCreateOptions.None;
 
 
+
             TQEnjineZ.Clases.Wrappers.zBitmap.zBitmap pic = new Clases.Wrappers.zBitmap.zBitmap(img);
 
             pic.editLayer("Background", null, null, null, 70);
@@ -49,7 +50,6 @@ namespace TQEnjineZ
             DateTime dt1 = DateTime.Now;
 
             double time = (dt1 - dt).TotalSeconds;
-
             //Смешивание 3 картинок 250х250 идёт аж 0,3 секунды! Нужно ускорять...
             //3 картинки 1500х1500 обрабатываются 9 секунд =_=. очень фейловый результат.
             //UPDATE
@@ -67,6 +67,10 @@ namespace TQEnjineZ
             //Довёл время обработки 3 слоёв до 0,522 секунд
             //Пилять... Перевёл на байты, теперь косяк с цветами >_<
             //Да и с рассчётом альфа канала тоже...
+            //Update5.
+            //Пофиксил проблему с цветами. Текущее время работы - 0,58 секунд...
+            //Многовато, конечно, но в целом - приемлемо. 
+            //Если грузить кучу картинок такого формата в разных потоках - то даже сойдёт.
         }
         
 
