@@ -16,7 +16,7 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         /// <summary>
         /// Картинка слоя, в формате массива пикселов
         /// </summary>
-        private zBitmapPixel[] Image;
+        private byte[] Image { get; set; }
         /// <summary>
         /// Свойство видимости слоя
         /// </summary>
@@ -52,7 +52,7 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         /// <summary>
         /// Фозвращаем картинку слоя
         /// </summary>
-        public zBitmapPixel[] getLayer { get; set; }
+        public byte[] getLayer { get; set; }
 
         /// <summary>
         /// Инициализируем новый слой
@@ -73,22 +73,18 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         /// Формирование слоя, со всеми указанными параметрами
         /// </summary>
         /// <returns>Список пикселей слоя</returns>
-        private zBitmapPixel[] compileLayer()
+        private byte[] compileLayer()
         {
-            zBitmapPixel[] ex;
+            byte[] ex;
             //Если слой виден
             if (Visible)
             {
-                //Инициализируем новый массив пикселов
-                ex = new zBitmapPixel[Image.Length];
-                //Проходимся по всем пикселям изначального изображения
-                for (int i = 0; i < Image.Length; i++)
-                    //И, проставляем им нужную прозрачность
-                    ex[i] = Image[i].getPixelWithOpacity(OpacityValue);
+                //Возвращаем новый массив пикселов
+                ex = getPixelsWithOpacity(OpacityValue);
             }
             //В случае, если слой не виден, вернём пустой массив
             else
-                ex = new zBitmapPixel[0];             
+                ex = new byte[0];             
 
             return ex;
         }
@@ -98,12 +94,11 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         /// </summary>
         /// <param name="Image">Картинка</param>
         /// <returns>Список пикселов</returns>
-        private zBitmapPixel[] getPixelsFromImage(BitmapImage Image)
+        private byte[] getPixelsFromImage(BitmapImage Image)
         {
             int bytesInPixel, pxCt, channelsCt, stride;
-            byte[] pixArr;
             //Выходной массив пикселов
-            List<zBitmapPixel> ex = new List<zBitmapPixel>();
+            byte[] ex;
 
             //Считаем количество байт на пиксель, в исходной картинке
             bytesInPixel = Image.Format.BitsPerPixel / 8;
@@ -117,23 +112,15 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
                 //Множим ширину, на количество байт в цвете, получая шаг
                 stride = Image.PixelWidth * Image.Format.BitsPerPixel / 8;
                 //Инициализируем массив, для получения пикселов
-                pixArr = new byte[channelsCt];
+                ex = new byte[channelsCt];
                 //Сливаем все пиксели картинки
-                Image.CopyPixels(pixArr, stride, 0);
-
-                //Проходимся по всем каналам
-                for (int i = 0; i < channelsCt; i += bytesInPixel)
-                    //Добавляя пиксели в список, помня, что формат у нас - BGRA
-                    ex.Add(new zBitmapPixel()
-                    {
-                        Blue = pixArr[i],
-                        Green = pixArr[i + 1],
-                        Red = pixArr[i + 2],
-                        Alpha = pixArr[i + 3]
-                    });
+                Image.CopyPixels(ex, stride, 0);                
             }
+            //Во всех остальных случаях возвращаем пустой массив
+            else
+                ex = new byte[0];
 
-            return ex.ToArray();
+            return ex;
         }
 
         /// <summary>
@@ -145,6 +132,92 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
             this.Image = getPixelsFromImage(Image);
             //Пересоздаём слой
             getLayer = compileLayer();
+        }
+
+
+        /// <summary>
+        /// Возвращает массив пикселов, с новой прозрачностью
+        /// </summary>
+        /// <param name="Opacity">Значение прозрачности</param>
+        /// <returns>Пиксели с новой прозрачностью</returns>
+        public byte[] getPixelsWithOpacity(byte Opacity)
+        {
+            //СОздаём выходной массив таким же, как и эталонная картинка
+            byte[] ex = new byte[Image.Length];
+            //Копируем байты картинки в выходной массив
+            Image.CopyTo(ex, 0);
+            //ПРоходимся по каналам
+            for (int i = 3; i < ex.Length; i += 4)
+                //Меняем значение, для альфа-канала
+                ex[i] = (byte)((ex[i] * Opacity) / 100);
+
+            return ex;
+        }
+
+
+        /// <summary>
+        /// Смешиваем цвета, с учётом 2 слоёв
+        /// </summary>
+        /// <param name="foreground">Пиксели переднего плана</param>
+        /// <returns>Смешанный слой</returns>
+        public byte[] mixPixelColors(byte[] backgeround)
+        {
+            /*
+             Как показала практика, вызов рассчётов в отдельной функции сжирает 
+             до 0,3 секунд, так что, всё будет в одной функции.
+             А, вот, присваивание сначала в переменную, а потом в массив особой разницы 
+             в скорости не даёт, так что останется так, т.к. мне так удобнее.             
+             */
+
+            byte av3, colR, colG, colB;
+            int r, g, b, a;
+            //Записываем пиксели фона
+            byte[] foreground = getLayer;
+            //Инициализируем новый массив, по размеру фона
+            byte[] ex = new byte[backgeround.Length];
+            //Проходимся по пикселям фона
+            for (int i = 0; i < backgeround.Length; i+=4)
+            {
+                //BGRA
+                b = i;
+                g = i + 1;
+                r = i + 2;
+                a = i + 3;
+
+                //Если у фона альфа канал непрозрачен, то считаем вот так:
+                if (backgeround[a] == 255)
+                {
+                    //Итоговый альфа-канал - непрозрачный
+                    av3 = 255;
+                    //Считаем значения цветов
+                    colG = (byte)(foreground[g] * foreground[a] + backgeround[g] * (255 - foreground[a]));
+                    colB = (byte)(foreground[b] * foreground[a] + backgeround[b] * (255 - foreground[a]));
+                    colR = (byte)(foreground[r] * foreground[a] + backgeround[r] * (255 - foreground[a]));
+                }
+                else
+                {
+                    //Считаем значение суммарного альфа-канала
+                    av3 = (byte)(foreground[a] + backgeround[a] * (255 - foreground[a]));
+                    //Если результирующий альфа-канал равен нулю, то все цвета ставим белым, т.к. всё равно получится прозрачный
+                    if (av3 == 0)
+                        colR = colG = colB = 255;
+                    else
+                    {
+                        //Считаем значения цветов
+                        colG = (byte)((foreground[g] * foreground[a] + backgeround[g] * backgeround[a] * (255 - foreground[a])) / av3);
+                        colB = (byte)((foreground[b] * foreground[a] + backgeround[b] * backgeround[a] * (255 - foreground[a])) / av3);
+                        colR = (byte)((foreground[r] * foreground[a] + backgeround[r] * backgeround[a] * (255 - foreground[a])) / av3);
+                    }
+                }
+
+                //Возвращаем миксовый цвет
+                ex[g] = colG;
+                ex[b] = colB;
+                ex[r] = colR;
+                ex[a] = av3;
+            }
+
+            return ex;
         }
     }
 }

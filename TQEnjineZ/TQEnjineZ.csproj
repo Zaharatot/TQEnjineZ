@@ -63,7 +63,6 @@
     </Compile>
     <Compile Include="Clases\Wrappers\zBitmap\zBitmap.cs" />
     <Compile Include="Clases\Wrappers\zBitmap\zBitmapLayer.cs" />
-    <Compile Include="Clases\Wrappers\zBitmap\zBitmapPixel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

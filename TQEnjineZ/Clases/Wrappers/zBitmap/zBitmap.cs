@@ -33,7 +33,14 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         /// <summary>
         /// Финальное изображение, генерируемое в этом классе
         /// </summary>
-        public WriteableBitmap GetFinalImage { get; private set; }
+        public WriteableBitmap GetFinalImage
+        {
+            get
+            {
+                //Компилируем слои, при запросе картинки
+                return compileLayers();
+            }
+        }
 
 
         /// <summary>
@@ -64,8 +71,6 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         {
             //Добавляем новый слой в словарь
             layers.Add(name, new zBitmapLayer(Image, zIndex, Visible, Opacity));
-            //Формируем выходную картинку изо всех слоёв
-            this.GetFinalImage = compileLayers();
         }
 
         /// <summary>
@@ -101,8 +106,6 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
 
                 //Сохраняем изменённый слой
                 layers[name] = layer;
-                //Формируем выходную картинку изо всех слоёв
-                this.GetFinalImage = compileLayers();
             }
         }
 
@@ -117,8 +120,6 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
             {
                 //Удаляем его
                 layers.Remove(name);
-                //Формируем выходную картинку изо всех слоёв
-                GetFinalImage = compileLayers();
             }
         }
 
@@ -130,124 +131,74 @@ namespace TQEnjineZ.Clases.Wrappers.zBitmap
         {
             //Создаём картинку, для вывода на неё пикселов
             WriteableBitmap ex = new WriteableBitmap(width, height, 140, 140, PixelFormats.Bgra32, null);
-
-            try
-            {
+       /*     try
+            {*/
+                int i = 0;
                 //Формируем список из всех слоёв
-                List<zBitmapLayer> layersList = new List<zBitmapLayer>();
+                zBitmapLayer[] layersList = new zBitmapLayer[layers.Count];
                 //Превращаем словарь в список
                 foreach (var layer in layers)
                     //Добавляем слой в список, только если он видимый
                     if (layer.Value.Visible)
-                        layersList.Add(layer.Value);
+                        layersList[i++] = layer.Value;
 
                 //Сортируем список слоёв, по индексу расположения
                 //Располагаем их в порядке возрастания
-                layersList.Sort(delegate (zBitmapLayer a, zBitmapLayer b)
+                Array.Sort(layersList, delegate (zBitmapLayer a, zBitmapLayer b)
                 {
                     return a.ZIndex.CompareTo(b.ZIndex);
                 });
 
+
                 //Формируем из кучи слоёв один
-                var imagePixels = compilelayers(layersList);
-                //Превращаем список пикселов, в массив байтов
-                var bytes = compilePixelArrayByteArray(imagePixels);
+                var imagePixels = mixLayersPixels(layersList);
                 //Множим ширину, на количество байт в цвете
                 int stride = width * 4;
-                //Формируем картинку
-                ex.WritePixels(new Int32Rect(0, 0, width, height), bytes, stride, 0);
-            }
-            catch { }
 
+                //Формируем картинку
+                ex.WritePixels(new Int32Rect(0, 0, width, height), imagePixels, stride, 0);
+          /*  }
+            catch { }
+            */
             //Возвращаем картинку
             return ex;
         }
 
-        /// <summary>
-        /// Смешиваем пиксели
-        /// </summary>
-        /// <param name="pixels">Список смешиваемых пикселей</param>
-        /// <returns>Итоговый пиксель</returns>
-        private zBitmapPixel blendPixels(List<zBitmapPixel> pixels)
-        {
-            zBitmapPixel ex;
-
-            //Если есть хоть один слой
-            if(pixels.Count > 0)
-            {
-                //берём пиксель прового в порядке слоя, как фон
-                ex = pixels.First();
-                //Проходимся по всем последующим слоям
-                for (int i = 1; i < pixels.Count; i++)
-                    //Смешивая цвета фона, с новыми пикселями
-                    ex = ex.mixPixelColors(pixels[i]);
-            }
-            else
-                //Если слоёв нету, то заливаем белым прозрачным цветом
-                ex = new zBitmapPixel()
-                {
-                    Red = 255,
-                    Green = 255,
-                    Blue = 255,
-                    Alpha = 0
-                };
-
-            return ex;
-        }
+      
 
         /// <summary>
         /// Формируем один массив пикселов, из кучи слоёв
         /// </summary>
         /// <param name="layersList"></param>
         /// <returns></returns>
-        private zBitmapPixel[] compilelayers(List<zBitmapLayer> layersList)
+        private byte[] mixLayersPixels(zBitmapLayer[] layersList)
         {
-            List<zBitmapPixel> buff;
+            byte[] buff;
             //Получаем длинну массива пикселов фона
             int countPixels = width * height;
             //Формируем выходной массив
-            zBitmapPixel[] ex = new zBitmapPixel[countPixels];
-
-            //Проходимся по выходному массиву
-            for(int i = 0; i < countPixels; i++)
+            byte[] ex;
+            //Получаем количество слоёв
+            int layersCount = layersList.Length;
+            //Если слои есть
+            if (layersCount > 0)
             {
-                buff = new List<zBitmapPixel>();
-                //Проходимся по массиву слоёв
-                foreach (var layer in layersList)
-                    //Если пиксели слоя не кончились, записываем пиксель
-                    if (i < layer.getLayer.Length)
-                        buff.Add(layer.getLayer[i]);
-
-                //Смешиваем пиксели со всех имеющихся слоёв
-                ex[i] = blendPixels(buff);
+                //Запоминаем нулевой слой
+                buff = layersList[0].getLayer;
+                //Проходимся по слоям
+                for (int i = 1; i < layersCount; i++)
+                    //Миксим текущий слой, как слой переднего плана, с 
+                    //запомненным слоем, как слоем фона, запоминая 
+                    //получившийся в итоге слой
+                    buff = layersList[i].mixPixelColors(buff);
+                ex = buff;
             }
-
+            //Если слоёв нету, то возвращаем пустой массив
+            else
+                ex = new byte[0];
             //Возвращаем массив пикселов
             return ex;
         }
 
-        /// <summary>
-        /// Превращаем массив пикселов, в мкассив байтов
-        /// </summary>
-        /// <param name="pixels">Массив пикселов</param>
-        /// <returns>Массив байтов</returns>
-        private byte[] compilePixelArrayByteArray(zBitmapPixel[] pixels)
-        {
-            //Формируем массив пикселов, на 4 канала
-            int countchannels = width * height * 4;
-            byte[] ex = new byte[countchannels];
-            int i = 0;
-
-            //Записываем все пикселы в массив байтов, не забывая, что у нас модель BGRA
-            foreach (var pixel in pixels)
-            {
-                ex[i++] = pixel.Blue;
-                ex[i++] = pixel.Green;
-                ex[i++] = pixel.Red;
-                ex[i++] = pixel.Alpha;
-            }
-
-            return ex;
-        }
     }
 }

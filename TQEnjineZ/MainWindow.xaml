@@ -16,10 +16,7 @@
                 <TreeView Name="scenesTree" DockPanel.Dock="Bottom" Width="300" Height="300" Foreground="Black" Background="{x:Null}" BorderThickness="1,0,0,0"/>
                 <TreeView Name="sceneElementsTree" Foreground="Black" Background="{x:Null}" BorderBrush="#FF828790" BorderThickness="1,0,0,1"/>
             </DockPanel>
-            <Grid>
-                <Image Name="pictOut" HorizontalAlignment="Left" Height="419" Margin="94,81,0,0" VerticalAlignment="Top" Width="795"/>
-
-            </Grid>
+            <Grid/>
         </DockPanel>
     </Grid>
 </Window>
