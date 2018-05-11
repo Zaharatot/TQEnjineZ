@@ -26,19 +26,19 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         /// <summary>
         /// Имя шрифта
         /// </summary>
-        private FontFamily fFamily;
+        private FontFamily fontFamilyP;
         /// <summary>
         /// Размер шрифта
         /// </summary>
-        private double fSize;
+        private double fontSizeP;
         /// <summary>
         /// Жирность шрифта
         /// </summary>
-        private FontWeight fWeight;
+        private FontWeight fontWeightP;
         /// <summary>
         /// Подчёркивание шрифта
         /// </summary>
-        private TextDecorationCollection tDecoration;
+        private TextDecorationCollection textDecorationP;
 
 
 
@@ -49,12 +49,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return fFamily;
+                return fontFamilyP;
             }
             set
             {
                 //Присваиваем значение
-                fFamily = value;
+                fontFamilyP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditFont?.Invoke();
             }
@@ -66,12 +66,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return fSize;
+                return fontSizeP;
             }
             set
             {
                 //Присваиваем значение
-                fSize = value;
+                fontSizeP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditFont?.Invoke();
             }
@@ -84,12 +84,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return fWeight;
+                return fontWeightP;
             }
             set
             {
                 //Присваиваем значение
-                fWeight = value;
+                fontWeightP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditFont?.Invoke();
             }
@@ -102,12 +102,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return tDecoration;
+                return textDecorationP;
             }
             set
             {
                 //Присваиваем значение
-                tDecoration = value;
+                textDecorationP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditFont?.Invoke();
             }
@@ -119,10 +119,10 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         public SceneObjectStyleFont()
         {
             //Прописываем дефолтные параметры шрифта
-            fFamily = new FontFamily("Arial");
-            fSize = 15;
-            fWeight = FontWeights.Normal;
-            tDecoration = null;
+            fontFamilyP = new FontFamily("Arial");
+            fontSizeP = 15;
+            fontWeightP = FontWeights.Normal;
+            textDecorationP = null;
         }
 
     }

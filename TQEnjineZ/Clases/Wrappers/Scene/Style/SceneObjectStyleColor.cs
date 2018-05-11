@@ -24,15 +24,15 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         /// <summary>
         /// Цвет заднего фона
         /// </summary>
-        private Color bgColor;
+        private Color backgroundColorP;
         /// <summary>
         /// Цвет контента
         /// </summary>
-        private Color fgColor;
+        private Color foregroundColorP;
         /// <summary>
         /// Цвет рамки
         /// </summary>
-        private Color bColor;
+        private Color borderColorP;
 
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return bgColor;
+                return backgroundColorP;
             }
             set
             {
                 //Присваиваем значение
-                bgColor = value;
+                backgroundColorP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditColor?.Invoke();
             }
@@ -59,12 +59,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return fgColor;
+                return foregroundColorP;
             }
             set
             {
                 //Присваиваем значение
-                fgColor = value;
+                foregroundColorP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditColor?.Invoke();
             }
@@ -76,12 +76,12 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return bColor;
+                return borderColorP;
             }
             set
             {
                 //Присваиваем значение
-                bColor = value;
+                borderColorP = value;
                 //Вызываем ивент, сообщающий об изменении
                 EditColor?.Invoke();
             }
@@ -93,9 +93,9 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         public SceneObjectStyleColor()
         {
             //Прописываем дефолтные цвета
-            bgColor = new Color() { A = 255, R = 251, G = 251, B = 251 };
-            fgColor = new Color() { A = 255, R = 15, G = 15, B = 15 };
-            bColor = new Color() { A = 255, R = 20, G = 20, B = 20 };
+            backgroundColorP = new Color() { A = 255, R = 251, G = 251, B = 251 };
+            foregroundColorP = new Color() { A = 255, R = 15, G = 15, B = 15 };
+            borderColorP = new Color() { A = 255, R = 20, G = 20, B = 20 };
         }
     }
 }
