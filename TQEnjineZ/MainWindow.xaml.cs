@@ -30,7 +30,11 @@ namespace TQEnjineZ
             
         }
         
-
+        /// <summary>
+        /// Сохранение картинки
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="image5"></param>
         void CreateThumbnail(string filename, BitmapSource image5)
         {
             if (filename != string.Empty)

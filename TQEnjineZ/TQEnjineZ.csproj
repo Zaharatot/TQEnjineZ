@@ -62,7 +62,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Clases\Wrappers\Parameters\ParameterLoader.cs" />
-    <Compile Include="Clases\Wrappers\Scene\SceneObject.cs" />
+    <Compile Include="Clases\Wrappers\Scene\SceneObjectBase.cs" />
+    <Compile Include="Clases\Wrappers\Scene\SceneObjectAnimation.cs" />
+    <Compile Include="Clases\Wrappers\Scene\SceneObjectStyle.cs" />
     <Compile Include="Clases\Wrappers\zBitmap\zBitmap.cs" />
     <Compile Include="Clases\Wrappers\zBitmap\zBitmapLayer.cs" />
     <Compile Include="MainWindow.xaml.cs">

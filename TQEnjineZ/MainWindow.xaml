@@ -18,5 +18,6 @@
             </DockPanel>
             <Grid/>
         </DockPanel>
+        <TextBlock HorizontalAlignment="Left" TextDecorations="{x:Null}" Margin="359,328,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Foreground="Black" FontSize="72"/>
     </Grid>
 </Window>
