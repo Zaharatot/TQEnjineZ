@@ -6,35 +6,22 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
 
-
-namespace TQEnjineZ.Clases.Wrappers.Scene
+namespace TQEnjineZ.Clases.Wrappers.Scene.Style
 {
     /// <summary>
-    /// Стиль объекта сцены
+    /// Информация о шрифте стиля
     /// </summary>
-    class SceneObjectStyle
+    class SceneObjectStyleFont
     {
         /// <summary>
         /// Делегат события изменения стиля объекта сцены
         /// </summary>
         public delegate void EditStyleEvent();
         /// <summary>
-        /// Ивент изменения стиля объекта сцены
+        /// Ивент изменения шрифта объекта сцены
         /// </summary>
-        public event EditStyleEvent EditStyle;
+        public event EditStyleEvent EditFont;
 
-        /// <summary>
-        /// Цвет заднего фона
-        /// </summary>
-        private Color bgColor;
-        /// <summary>
-        /// Цвет контента
-        /// </summary>
-        private Color fgColor;
-        /// <summary>
-        /// Цвет рамки
-        /// </summary>
-        private Color bColor;
 
         /// <summary>
         /// Имя шрифта
@@ -56,58 +43,6 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
 
 
         /// <summary>
-        /// Публичный параметр цвета заднего фона
-        /// </summary>
-        public Color backgroundColor
-        {
-            get
-            {
-                return bgColor;
-            }
-            set
-            {
-                //Присваиваем значение
-                bgColor = value;
-                //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
-            }
-        }
-        /// <summary>
-        /// Публичный параметр цвета контента
-        /// </summary>
-        public Color foregroundColor
-        {
-            get
-            {
-                return fgColor;
-            }
-            set
-            {
-                //Присваиваем значение
-                fgColor = value;
-                //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
-            }
-        }
-        /// <summary>
-        /// Публичный параметр цвета рамки
-        /// </summary>
-        public Color borderColor
-        {
-            get
-            {
-                return bColor;
-            }
-            set
-            {
-                //Присваиваем значение
-                bColor = value;
-                //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
-            }
-        }
-
-        /// <summary>
         /// Публичный параметр имени шрифта
         /// </summary>
         public FontFamily fontFamily
@@ -121,7 +56,7 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
                 //Присваиваем значение
                 fFamily = value;
                 //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
+                EditFont?.Invoke();
             }
         }
         /// <summary>
@@ -138,7 +73,7 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
                 //Присваиваем значение
                 fSize = value;
                 //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
+                EditFont?.Invoke();
             }
         }
         /// <summary>
@@ -156,7 +91,7 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
                 //Присваиваем значение
                 fWeight = value;
                 //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
+                EditFont?.Invoke();
             }
         }
         /// <summary>
@@ -174,26 +109,21 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
                 //Присваиваем значение
                 tDecoration = value;
                 //Вызываем ивент, сообщающий об изменении
-                EditStyle?.Invoke();
+                EditFont?.Invoke();
             }
         }
 
-
         /// <summary>
-        /// Инициализация объекта сцены дефолтными значениями
+        /// Инициализация шрифта стиля дефолтными значениями
         /// </summary>
-        public SceneObjectStyle()
+        public SceneObjectStyleFont()
         {
-            //Прописываем дефолтные цвета
-            bgColor = new Color() { A = 255, R = 251, G = 251, B = 251 };
-            fgColor = new Color() { A = 255, R = 15, G = 15, B = 15 };
-            bColor = new Color() { A = 255, R = 20, G = 20, B = 20 };
-
             //Прописываем дефолтные параметры шрифта
             fFamily = new FontFamily("Arial");
             fSize = 15;
             fWeight = FontWeights.Normal;
             tDecoration = null;
         }
+
     }
 }

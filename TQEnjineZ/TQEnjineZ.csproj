@@ -62,9 +62,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Clases\Wrappers\Parameters\ParameterLoader.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationBlink.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationFlashing.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationMove.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationOpacity.cs" />
     <Compile Include="Clases\Wrappers\Scene\SceneObjectBase.cs" />
-    <Compile Include="Clases\Wrappers\Scene\SceneObjectAnimation.cs" />
-    <Compile Include="Clases\Wrappers\Scene\SceneObjectStyle.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimation.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Style\SceneObjectStyle.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Style\SceneObjectStyleColor.cs" />
+    <Compile Include="Clases\Wrappers\Scene\Style\SceneObjectStyleFont.cs" />
     <Compile Include="Clases\Wrappers\zBitmap\zBitmap.cs" />
     <Compile Include="Clases\Wrappers\zBitmap\zBitmapLayer.cs" />
     <Compile Include="MainWindow.xaml.cs">

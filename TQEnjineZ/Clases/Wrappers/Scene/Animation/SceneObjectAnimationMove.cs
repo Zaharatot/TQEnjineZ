@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TQEnjineZ.Clases.Wrappers.Scene
+namespace TQEnjineZ.Clases.Wrappers.Scene.Animation
 {
     /// <summary>
-    /// Анимация объекта сцены
+    /// Информация, о параметрах анимации
+    /// Тип анимации - сдвиг
     /// </summary>
-    class SceneObjectAnimation
+    class SceneObjectAnimationMove
     {
         /// <summary>
         /// Тип анимации объекта
