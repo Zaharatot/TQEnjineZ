@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 
 namespace TQEnjineZ.Clases.Wrappers.Scene.Style
@@ -13,98 +14,42 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
     class SceneObjectStyle
     {
         /// <summary>
-        /// Делегат события изменения стиля объекта сцены
+        /// Стиль шрифта, применяемый в этом блоке
         /// </summary>
-        public delegate void EditStyleEvent();
+        public string fontStyle { get; set; }
         /// <summary>
-        /// Ивент изменения цвета объекта сцены
+        /// Стиль рамки, применяемый в этом блоке
         /// </summary>
-        public event EditStyleEvent EditColor;
+        public string borderStyle { get; set; }
         /// <summary>
-        /// Ивент изменения шрифта объекта сцены
+        /// Стиль заднего плана, применяемый в этом блоке
         /// </summary>
-        public event EditStyleEvent EditFont;
+        public string backgroundStyle { get; set; }
 
         /// <summary>
-        /// Цвет стиля
+        /// Возвращаем список классов данного блока
         /// </summary>
-        private SceneObjectStyleColor styleColor;
-        /// <summary>
-        /// Шрифт стиля
-        /// </summary>
-        private SceneObjectStyleFont styleFont;
-
-
-
-        /// <summary>
-        /// Публичные параметры цвета стиля
-        /// </summary>
-        public SceneObjectStyleColor Color
+        public string getClass
         {
             get
             {
-                return styleColor;
-            }
-            set
-            {
-                //Присваиваем цвета стиля1
-                styleColor = value;
-                //Добавляем прослушку внутренних ивентов
-                Color.EditColor += Color_EditColor;
-                //Вызываем ивент
-                EditColor?.Invoke();
+                return string.Format("{0} {1} {2}", fontStyle, borderStyle, backgroundStyle);
             }
         }
-        
-        /// <summary>
-        /// Публичные параметры шрифта стиля
-        /// </summary>
-        public SceneObjectStyleFont Font
-        {
-            get
-            {
-                return styleFont;
-            }
-            set
-            {
-                //Присваиваем цвета стиля1
-                styleFont = value;
-                //Добавляем прослушку внутренних ивентов
-                Font.EditFont += Font_EditFont;
-                //Вызываем ивент
-                EditFont?.Invoke();
-            }
-        }
+
 
         /// <summary>
         /// Инициализация объекта сцены дефолтными значениями
         /// </summary>
         public SceneObjectStyle()
         {
-            //Инициализируем дефолтные значения
-            Color = new SceneObjectStyleColor();
-            Font = new SceneObjectStyleFont();
-            //Добавляем прослушку внутренних ивентов
-            Color.EditColor += Color_EditColor;
-            Font.EditFont += Font_EditFont;
-        }
-
-        /// <summary>
-        /// ивент изменения шрифта
-        /// </summary>
-        private void Font_EditFont()
-        {
-            //Вызываем внешний ивент
-            EditFont?.Invoke();
-        }
-
-        /// <summary>
-        /// ивент изменения цвета
-        /// </summary>
-        private void Color_EditColor()
-        {
-            //Вызываем внешний ивент
-            EditColor?.Invoke();
-        }
+            //Определяем дефолтные стили
+            //Задний план - дефолтный
+            backgroundStyle = "";
+            //Шрифт - дефолтный
+            fontStyle = "";
+            //Рамка - без рамки
+            borderStyle = "";
+        }      
     }
 }

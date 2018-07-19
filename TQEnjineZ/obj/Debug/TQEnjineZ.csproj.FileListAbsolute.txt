@@ -1,7 +1,6 @@
 H:\TQEnjineZ\TQEnjineZ\bin\Debug\TQEnjineZ.exe.config
 H:\TQEnjineZ\TQEnjineZ\bin\Debug\TQEnjineZ.exe
 H:\TQEnjineZ\TQEnjineZ\bin\Debug\TQEnjineZ.pdb
-H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ.csprojResolveAssemblyReference.cache
 H:\TQEnjineZ\TQEnjineZ\obj\Debug\MainWindow.g.cs
 H:\TQEnjineZ\TQEnjineZ\obj\Debug\App.g.cs
 H:\TQEnjineZ\TQEnjineZ\obj\Debug\TQEnjineZ_MarkupCompile.cache

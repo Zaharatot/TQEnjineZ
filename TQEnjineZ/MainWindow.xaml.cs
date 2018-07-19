@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TQEnjineZ.Clases.Wrappers.WorkClasses;
+using TQEnjineZ.Clases.Server;
 
 namespace TQEnjineZ
 {
@@ -25,9 +27,11 @@ namespace TQEnjineZ
         {
             InitializeComponent();
 
-            for (int i = 0; i < 10; i++)
-                scenesTree.Items.Add("Scene_" + i.ToString());
-            
+
+            ServerWorker sw = new ServerWorker();
+
+            sw.startServer();
+
         }
         
         /// <summary>
