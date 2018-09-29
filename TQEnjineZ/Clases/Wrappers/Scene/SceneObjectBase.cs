@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TQEnjineZ.Clases.Wrappers.Scene.Style;
-using TQEnjineZ.Clases.Wrappers.Scene.Animation;
 
 namespace TQEnjineZ.Clases.Wrappers.Scene
 {
@@ -12,52 +10,29 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
     /// Базовый объект сцены, размещается внутри сцены
     /// </summary>
     class SceneObjectBase
-    {
-        /// <summary>
-        /// Типы объектов сцены
-        /// </summary>
-        public enum SceneObjectType
-        {
-            Текст,
-            Изображение
-        }
-
-        /// <summary>
-        /// Тип отображения объекта сцены
-        /// </summary>
-        public enum SceneObjectDisplay
-        {
-            Не_отображается,
-            Указанный_размер,
-            По_размеру_содержимого,
-            По_размеру_Контейнера
-        }
-        
+    { 
         /// <summary>
         /// Список дочерних объектов сцены
         /// </summary>
         public List<SceneObjectBase> childs { get; set; }
+        /// <summary>
+        /// Стиль объекта сцены
+        /// </summary>
+        public SceneObjectStyle Style { get; set; }
+        /// <summary>
+        /// Список триггеров объекта сцены
+        /// </summary>
+        public SceneObjectTriggers Triggers { get; set; }
+        /// <summary>
+        /// Id элемента
+        /// </summary>
+        public string elementId { get; private set; }
 
         /// <summary>
-        /// Ширина объекта сцены
+        /// Название объекта сцены
         /// </summary>
-        public int Width { get; set; }
-        /// <summary>
-        /// Высота объекта сцены
-        /// </summary>
-        public int Height { get; set; }
-        /// <summary>
-        /// Координата левого верхнего угла обекта сцены, по оси X
-        /// </summary>
-        public int Left { get; set; }
-        /// <summary>
-        /// Координата левого верхнего угла обекта сцены, по оси Y
-        /// </summary>
-        public int Top { get; set; }
-        /// <summary>
-        /// Слой объекта сцены
-        /// </summary>
-        public int Layer { get; set; }
+        public string objectName { get; set; }
+
 
         /// <summary>
         /// Возвращает Html-код данной сцены
@@ -70,21 +45,18 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
             }
         }
 
-        /// <summary>
-        /// Стиль объекта сцены
-        /// </summary>
-        public SceneObjectStyle Style { get; set; }
-        /// <summary>
-        /// Анимация объекта сцены
-        /// </summary>
-        public SceneObjectAnimation Animation { get; set; }
 
         /// <summary>
         /// Инициалилируем базовый объект сцены дефолтными значениями
         /// </summary>
         public SceneObjectBase()
         {
+            //Инициализируем дефолтные значения
             Style = new SceneObjectStyle();
+            Triggers = new SceneObjectTriggers();
+
+            elementId = "NewSceneElement";
+            /* Вот тут эудет код формирования уникального идентификатора элемента */
         }
 
         /// <summary>

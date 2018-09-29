@@ -93,23 +93,15 @@ namespace TQEnjineZ.Clases.StyleSheet
             get
             {
                 //Возвращаем кусок файла стилей, с параметрами данного шрифта
-                return string.Format(@"                    
-                        font-family: {0};
-                        font-size: {1}px;
-                        font-weight: {2};
-                        text-decoration: {3};
-                        text-decoration-style: {4};
-                        text-decoration-color: {5};
-                        color: {6};
-                    ", 
-                    family, 
-                    size, 
-                    weight.ToString(),
-                    OtherFuncs.replaceName(decoration.ToString(), "-"),
-                    OtherFuncs.replaceName(decorationStyle.ToString(), ""),
-                    OtherFuncs.getCssCloor(decorationColor),
-                    OtherFuncs.getCssCloor(color)
-                );
+                return $@"                    
+                        font-family: { family };
+                        font-size: { size }px;
+                        font-weight: { weight };
+                        text-decoration: { OtherFuncs.replaceName(decoration.ToString(), "-") };
+                        text-decoration-style: { OtherFuncs.replaceName(decorationStyle.ToString(), "") };
+                        text-decoration-color: { OtherFuncs.getCssCloor(decorationColor) };
+                        color: { OtherFuncs.getCssCloor(color) };
+                    ";
             }
         }
 

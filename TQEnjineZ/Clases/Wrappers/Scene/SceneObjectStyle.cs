@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 
 
-namespace TQEnjineZ.Clases.Wrappers.Scene.Style
+namespace TQEnjineZ.Clases.Wrappers.Scene
 {
     /// <summary>
     /// Стиль объекта сцены
@@ -25,6 +25,10 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         /// Стиль заднего плана, применяемый в этом блоке
         /// </summary>
         public string backgroundStyle { get; set; }
+        /// <summary>
+        /// Стиль позиции, применяемый в этом блоке
+        /// </summary>
+        public string positionStyle { get; set; }
 
         /// <summary>
         /// Возвращаем список классов данного блока
@@ -33,7 +37,7 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
         {
             get
             {
-                return string.Format("{0} {1} {2}", fontStyle, borderStyle, backgroundStyle);
+                return $"{fontStyle} {borderStyle} {backgroundStyle} {positionStyle}";
             }
         }
 
@@ -50,6 +54,8 @@ namespace TQEnjineZ.Clases.Wrappers.Scene.Style
             fontStyle = "";
             //Рамка - без рамки
             borderStyle = "";
+            //Позиция - без позиции
+            positionStyle = "";
         }      
     }
 }

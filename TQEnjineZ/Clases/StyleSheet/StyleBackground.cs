@@ -37,7 +37,10 @@ namespace TQEnjineZ.Clases.StyleSheet
         /// </summary>
         public string className { get; private set; }
 
-
+        /// <summary>
+        /// Прозрачность элемента
+        /// </summary>
+        public int opacity { get; set; }
         /// <summary>
         /// Цвет заднего фона
         /// </summary>
@@ -57,17 +60,14 @@ namespace TQEnjineZ.Clases.StyleSheet
         public string getCss
         {
             get
-            {
+            {      
                 //Возвращаем кусок файла стилей, с параметрами данного фона
-                return string.Format(@"                    
-                        background-color: {0};
-                        background-size: {1};
-                        background: {2};
-                    ",
-                    OtherFuncs.getCssCloor(color),
-                    size.ToString(),
-                    image.getCss
-                );
+                return $@"           
+                        background-color: { OtherFuncs.getCssCloor(color) };
+                        background-size: { size };
+                        background: { image.getCss };
+                        opacity: { OtherFuncs.getAlpha(opacity, 100) };
+                       ";
             }
         }
 

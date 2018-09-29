@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,23 +64,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Clases\OtherFuncs.cs" />
+    <Compile Include="Clases\Scripts\ScriptTriggers.cs" />
     <Compile Include="Clases\Server\ServerWorker.cs" />
     <Compile Include="Clases\StyleSheet\StyleBackground.cs" />
+    <Compile Include="Clases\StyleSheet\StylePosition.cs" />
     <Compile Include="Clases\Wrappers\Parameters\ParameterLoader.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationBlink.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationColor.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationFlashing.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationMove.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimationOpacity.cs" />
     <Compile Include="Clases\StyleSheet\StyleImage\ImageLayer.cs" />
     <Compile Include="Clases\StyleSheet\MainCss.cs" />
     <Compile Include="Clases\StyleSheet\StyleBorder.cs" />
     <Compile Include="Clases\StyleSheet\StyleBorderPart.cs" />
+    <Compile Include="Clases\Wrappers\Scene\SceneObjectTriggers.cs" />
     <Compile Include="Clases\Wrappers\WorkClasses\Base64Image.cs" />
     <Compile Include="Clases\StyleSheet\StyleImage\LayeredImage.cs" />
     <Compile Include="Clases\Wrappers\Scene\SceneObjectBase.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Animation\SceneObjectAnimation.cs" />
-    <Compile Include="Clases\Wrappers\Scene\Style\SceneObjectStyle.cs" />
+    <Compile Include="Clases\Scripts\ScriptAction.cs" />
+    <Compile Include="Clases\Wrappers\Scene\SceneObjectStyle.cs" />
     <Compile Include="Clases\StyleSheet\StyleFont.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

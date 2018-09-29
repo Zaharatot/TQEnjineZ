@@ -22,11 +22,15 @@ namespace TQEnjineZ.Clases.StyleSheet
         /// </summary>
         private List<StyleFont> fonts;
 
-
         /// <summary>
         /// Список стилей заднего плана
         /// </summary>
         private List<StyleBackground> backgrounds;
+
+        /// <summary>
+        /// Список стилей позиций
+        /// </summary>
+        private List<StylePosition> positions;
 
         /// <summary>
         /// Возвращает файл стилей
@@ -42,7 +46,6 @@ namespace TQEnjineZ.Clases.StyleSheet
                     //Добавляем стиль каждой в список
                     ex += createClass(br.className, br.getCss);
 
-
                 //Проходимся по всем шрифтам
                 foreach (var f in fonts)
                     //Добавляем стиль каждого в список
@@ -52,6 +55,11 @@ namespace TQEnjineZ.Clases.StyleSheet
                 foreach (var bg in backgrounds)
                     //Добавляем стиль каждого в список
                     ex += createClass(bg.className, bg.getCss);
+
+                //Проходимся по всем позициям
+                foreach (var pos in positions)
+                    //Добавляем стиль каждого в список
+                    ex += createClass(pos.className, pos.getCss);
 
                 return ex;
             }
@@ -66,6 +74,7 @@ namespace TQEnjineZ.Clases.StyleSheet
             borders = new List<StyleBorder>();
             fonts = new List<StyleFont>();
             backgrounds = new List<StyleBackground>();
+            positions = new List<StylePosition>();
         }
 
         /// <summary>
