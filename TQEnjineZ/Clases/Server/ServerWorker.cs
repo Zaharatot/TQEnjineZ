@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Collections.Specialized;
+using TQEnjineZ.Clases.Wrappers;
 
 namespace TQEnjineZ.Clases.Server
 {
@@ -132,7 +133,7 @@ namespace TQEnjineZ.Clases.Server
                      1: TQEnjineZ/      Название сервера
                  Дополнительные части запроса:
                      2: {gameName}      Название игры
-                     3: {sceneId}       Идентификатор сцены
+                     3: {filetype}      тип загружаемого файла
                      4: {fileId}        Идентификатор файла, который мы подгружаем для данной сцены
                 Строка запроса у нас пока что не используется
              */
@@ -144,14 +145,14 @@ namespace TQEnjineZ.Clases.Server
                         removeSlash(reqUrlSegments[3]),
                         removeSlash(reqUrlSegments[4])
                     ));
-            //Если у нас нету идентификатора файла, то грузим основной html файл страницы
-            else if(reqUrlSegments.Length == 4)
-                //Формируем строку байтов из скомпилированной страницы
-                ex = Encoding.Default.GetBytes(compilePageByRequest(
-                        removeSlash(reqUrlSegments[2]),
-                        removeSlash(reqUrlSegments[3]),
-                        "index.html"
-                    ));
+            //Если у нас ошибка в длинне запроса
+            else
+            {
+                /*
+                    Вот тут будет загрузка дефолтной страницы    
+                */
+
+            }
 
             return ex;
         }
@@ -167,28 +168,16 @@ namespace TQEnjineZ.Clases.Server
         /// <summary>
         /// Компилируем нужную страницу, и возвращаем её
         /// </summary>
-        /// <param name="file">Имя запрашиваемого файла</param>
-        /// <param name="gameName">Название файла игры</param>
-        /// <param name="sceneId">Название файла сцены</param>
-        /// <returns></returns>
-        private string compilePageByRequest(string gameName, string sceneId, string file)
+        /// <param name="gameName">Название игры</param>
+        /// <param name="fileType">Тип файла</param>
+        /// <param name="fileName">Имя файла</param>
+        /// <returns>Страница, для возврата</returns>
+        private string compilePageByRequest(string gameName, string fileType, string fileName)
         {
-            string ex = "";
-
-            ex = @"
-            <html>
-             <head>
-                <meta charset='utf-8'>
-                <title>Двойной фон</title>
-                <link href='/TQEnjineZ/doggy/one/animate.min.css' rel='stylesheet' type='text/css'>
-             </head>
-            <body>
-	            <div class='aaa'></div>
-            <body>
-            </html>
-            ";
-
-            return ex;
+            //Инициализируем загрузчик страниц
+            PageLoader pl = new PageLoader();
+            //Грузим нужную страницу
+            return pl.loadPage(gameName, fileType, fileName);
         }
     }
 }

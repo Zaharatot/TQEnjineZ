@@ -64,22 +64,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Clases\OtherFuncs.cs" />
-    <Compile Include="Clases\Scripts\ScriptTriggers.cs" />
+    <Compile Include="Clases\Wrappers\PageLoader.cs" />
+    <Compile Include="Clases\Wrappers\Scripts\MainScript.cs" />
+    <Compile Include="Clases\Wrappers\Scripts\ScriptTriggers.cs" />
     <Compile Include="Clases\Server\ServerWorker.cs" />
-    <Compile Include="Clases\StyleSheet\StyleBackground.cs" />
-    <Compile Include="Clases\StyleSheet\StylePosition.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StyleBackground.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StylePosition.cs" />
     <Compile Include="Clases\Wrappers\Parameters\ParameterLoader.cs" />
-    <Compile Include="Clases\StyleSheet\StyleImage\ImageLayer.cs" />
-    <Compile Include="Clases\StyleSheet\MainCss.cs" />
-    <Compile Include="Clases\StyleSheet\StyleBorder.cs" />
-    <Compile Include="Clases\StyleSheet\StyleBorderPart.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StyleImage\ImageLayer.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\MainCss.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StyleBorder.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StyleBorderPart.cs" />
+    <Compile Include="Clases\Wrappers\Scene\SceneObjectActions.cs" />
     <Compile Include="Clases\Wrappers\Scene\SceneObjectTriggers.cs" />
     <Compile Include="Clases\Wrappers\WorkClasses\Base64Image.cs" />
-    <Compile Include="Clases\StyleSheet\StyleImage\LayeredImage.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StyleImage\LayeredImage.cs" />
     <Compile Include="Clases\Wrappers\Scene\SceneObjectBase.cs" />
-    <Compile Include="Clases\Scripts\ScriptAction.cs" />
+    <Compile Include="Clases\Wrappers\Scripts\ScriptAction.cs" />
     <Compile Include="Clases\Wrappers\Scene\SceneObjectStyle.cs" />
-    <Compile Include="Clases\StyleSheet\StyleFont.cs" />
+    <Compile Include="Clases\Wrappers\StyleSheet\StyleFont.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -111,6 +114,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Scripts\basePage.html" />
+    <Content Include="Scripts\main.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

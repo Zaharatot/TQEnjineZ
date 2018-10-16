@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TQEnjineZ.Clases.StyleSheet
+namespace TQEnjineZ.Clases.Wrappers.StyleSheet
 {
     /// <summary>
     /// Класс основного CSS-файла. Содержит в себе списки всех 
@@ -15,22 +15,22 @@ namespace TQEnjineZ.Clases.StyleSheet
         /// <summary>
         /// Список стилей рамок
         /// </summary>
-        private List<StyleBorder> borders;
+        public List<StyleBorder> borders;
 
         /// <summary>
         /// Список стилей шрифтов
         /// </summary>
-        private List<StyleFont> fonts;
+        public List<StyleFont> fonts;
 
         /// <summary>
         /// Список стилей заднего плана
         /// </summary>
-        private List<StyleBackground> backgrounds;
+        public List<StyleBackground> backgrounds;
 
         /// <summary>
         /// Список стилей позиций
         /// </summary>
-        private List<StylePosition> positions;
+        public List<StylePosition> positions;
 
         /// <summary>
         /// Возвращает файл стилей

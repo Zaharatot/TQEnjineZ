@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace TQEnjineZ.Clases.StyleSheet
+namespace TQEnjineZ.Clases.Wrappers.StyleSheet
 {
     /// <summary>
     /// Стиль куска рамки

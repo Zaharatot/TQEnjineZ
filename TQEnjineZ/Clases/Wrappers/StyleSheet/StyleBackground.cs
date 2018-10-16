@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
-using TQEnjineZ.Clases.StyleSheet.StyleImage;
+using TQEnjineZ.Clases.Wrappers.StyleSheet.StyleImage;
 
-namespace TQEnjineZ.Clases.StyleSheet
+namespace TQEnjineZ.Clases.Wrappers.StyleSheet
 {
     /// <summary>
     /// Информация о заднем плане стиля

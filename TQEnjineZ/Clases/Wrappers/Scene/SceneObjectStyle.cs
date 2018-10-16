@@ -14,32 +14,29 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
     class SceneObjectStyle
     {
         /// <summary>
-        /// Стиль шрифта, применяемый в этом блоке
+        /// Список классов объекта
         /// </summary>
-        public string fontStyle { get; set; }
-        /// <summary>
-        /// Стиль рамки, применяемый в этом блоке
-        /// </summary>
-        public string borderStyle { get; set; }
-        /// <summary>
-        /// Стиль заднего плана, применяемый в этом блоке
-        /// </summary>
-        public string backgroundStyle { get; set; }
-        /// <summary>
-        /// Стиль позиции, применяемый в этом блоке
-        /// </summary>
-        public string positionStyle { get; set; }
+        public List<string> classes { get; set; }
+
 
         /// <summary>
-        /// Возвращаем список классов данного блока
+        /// Возвращает информацию о классах объекта
         /// </summary>
         public string getClass
         {
             get
             {
-                return $"{fontStyle} {borderStyle} {backgroundStyle} {positionStyle}";
+                string classList = "";
+
+                //Проходимся по списку классов
+                foreach (var clas in classes)
+                    //Добавляем их в общий список
+                    classList += $"{clas} ";
+
+                return $"class=\"{classList}\"";
             }
         }
+
 
 
         /// <summary>
@@ -47,15 +44,8 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
         /// </summary>
         public SceneObjectStyle()
         {
-            //Определяем дефолтные стили
-            //Задний план - дефолтный
-            backgroundStyle = "";
-            //Шрифт - дефолтный
-            fontStyle = "";
-            //Рамка - без рамки
-            borderStyle = "";
-            //Позиция - без позиции
-            positionStyle = "";
+            //Инициализируем пустой массив
+            classes = new List<string>();
         }      
     }
 }

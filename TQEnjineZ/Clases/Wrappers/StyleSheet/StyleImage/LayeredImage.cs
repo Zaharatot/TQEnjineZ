@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TQEnjineZ.Clases.Wrappers.WorkClasses;
 
-namespace TQEnjineZ.Clases.StyleSheet.StyleImage
+namespace TQEnjineZ.Clases.Wrappers.StyleSheet.StyleImage
 {
     /// <summary>
     /// Изображение в сцене, состоящее из нескольких слоёв

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
 
-namespace TQEnjineZ.Clases.StyleSheet
+namespace TQEnjineZ.Clases.Wrappers.StyleSheet
 {
     /// <summary>
     /// Информация о позиции стиля

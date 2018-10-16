@@ -67,6 +67,16 @@ namespace TQEnjineZ.Clases.Wrappers.Scene
         {
             string ex = "";
 
+            //Получаем триггеры объекта
+            string trigger = Triggers.getTriggers;
+            //Получаем класс элемента
+            string clas = Style.getClass;
+            //Вот тут будет получение дочерних элементов
+            string childs = "";
+
+            //Формируем тело элемента
+            ex = $"<div name=\"{objectName}\" id=\"{elementId}\" {clas} {trigger}>{childs}</div>";
+
 
             return ex;
         }

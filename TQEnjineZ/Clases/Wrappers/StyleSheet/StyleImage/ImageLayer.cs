@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TQEnjineZ.Clases.Wrappers.WorkClasses;
 
 
-namespace TQEnjineZ.Clases.StyleSheet.StyleImage
+namespace TQEnjineZ.Clases.Wrappers.StyleSheet.StyleImage
 {
     /// <summary>
     /// Небольшой класс, просто для хранения информации о слое

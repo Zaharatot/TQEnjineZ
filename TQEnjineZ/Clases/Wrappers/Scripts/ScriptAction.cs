@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TQEnjineZ.Clases.Scripts
+namespace TQEnjineZ.Clases.Wrappers.Scripts
 {
     /// <summary>
     /// Действие для триггера
@@ -22,7 +22,8 @@ namespace TQEnjineZ.Clases.Scripts
             Перемещение,        //Анимация, с эффектом передвижения
             Прозрачность,       //Анимация, с эффектом изменения прозрачности
             Цвет,               //Анимация, с эффектом плавного изменения цвета
-            Смена_сцены         //Переход на другую сцену
+            Смена_сцены,        //Переход на другую сцену
+            Установка_параметра //Установка занчения параметра на сервере
         }
 
         /// <summary>
@@ -93,6 +94,11 @@ namespace TQEnjineZ.Clases.Scripts
                 case AnimationType.Смена_сцены:
                     {
                         ex = $"scene_redirect({ json });";
+                        break;
+                    }
+                case AnimationType.Установка_параметра:
+                    {
+                        ex = $"set_param({ json });";
                         break;
                     }
             }
